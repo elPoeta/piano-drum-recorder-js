@@ -21,18 +21,18 @@ export class Piano {
             <div data-key="Bb" class="key black"></div>
             <div data-key="B" class="key white"></div>
         </section>
-        <audio id="C" src="./assets/media/piano/C.mp3"></audio>
-        <audio id="Db" src="./assets/media/piano/Db.mp3"></audio>
-        <audio id="D" src="./assets/media/piano/D.mp3"></audio>
-        <audio id="Eb" src="./assets/media/piano/Eb.mp3"></audio>
-        <audio id="E" src="./assets/media/piano/E.mp3"></audio>
-        <audio id="F" src="./assets/media/piano/F.mp3"></audio>
-        <audio id="Gb" src="./assets/media/piano/Gb.mp3"></audio>
-        <audio id="G" src="./assets/media/piano/G.mp3"></audio>
-        <audio id="Ab" src="./assets/media/piano/Ab.mp3"></audio>
-        <audio id="A" src="./assets/media/piano/A.mp3"></audio>
-        <audio id="Bb" src="./assets/media/piano/Bb.mp3"></audio>
-        <audio id="B" src="./assets/media/piano/B.mp3"></audio>` );
+        <audio id="C" src="./assets/media/piano/C.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="Db" src="./assets/media/piano/Db.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="D" src="./assets/media/piano/D.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="Eb" src="./assets/media/piano/Eb.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="E" src="./assets/media/piano/E.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="F" src="./assets/media/piano/F.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="Gb" src="./assets/media/piano/Gb.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="G" src="./assets/media/piano/G.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="Ab" src="./assets/media/piano/Ab.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="A" src="./assets/media/piano/A.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="Bb" src="./assets/media/piano/Bb.mp3" preload="auto" type="audio/mp3"></audio>
+        <audio id="B" src="./assets/media/piano/B.mp3" preload="auto" type="audio/mp3"></audio>` );
     }
 
     listen() {
