@@ -1,8 +1,11 @@
+import { Piano } from './piano.js';
+
 export class NavLink {
     constructor() {
         this.root = document.querySelector('#root');
         this.pianoLink = document.querySelector('#pianoLink');
         this.drumLink = document.querySelector('#drumLink');
+        this.piano = new Piano();
     }
 
     init() {
@@ -29,8 +32,8 @@ export class NavLink {
 
 
     renderPiano() {
-
-        this.root.innerHTML = `<h2>Piano</h2>`
+        this.root.innerHTML = this.piano.render();
+        this.piano.listen();
     }
 
     renderDrum() {
