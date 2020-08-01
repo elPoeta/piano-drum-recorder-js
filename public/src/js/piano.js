@@ -2,6 +2,7 @@ export class Piano {
     constructor() {
         this.WHITE_KEYS = ['z', 'x', 'c', 'v', 'b', 'n', 'm'];
         this.BLACK_KEYS = ['s', 'd', 'g', 'h', 'j'];
+        this.playNote = this.playNote.bind(this);
     }
 
     render() {
@@ -37,7 +38,29 @@ export class Piano {
     listen() {
         this.keys = document.querySelectorAll('.key');
         this.keys.forEach(key => {
-            console.log(key)
+            key.addEventListener('click', () => this.playNote(key))
         })
+        this.whiteKeys = document.querySelectorAll('.key.white');
+        this.blackKeys = document.querySelectorAll('.key.black');
+        document.addEventListener('keydown', this.pressKey.bind(this))
+    }
+
+    playNote(key) {
+        const noteAudio = document.querySelector(`#${key.dataset.key}`);
+        noteAudio.currentTime = 0
+        noteAudio.play()
+        key.classList.add('active')
+        noteAudio.addEventListener('ended', () => {
+            key.classList.remove('active')
+        });
+    }
+
+    pressKey(e) {
+        if (e.repeat) return;
+        const key = e.key
+        const whiteKeyIndex = this.WHITE_KEYS.indexOf(key)
+        const blackKeyIndex = this.BLACK_KEYS.indexOf(key)
+        if (whiteKeyIndex > -1) this.playNote(this.whiteKeys[whiteKeyIndex])
+        if (blackKeyIndex > -1) this.playNote(this.blackKeys[blackKeyIndex])
     }
 }
