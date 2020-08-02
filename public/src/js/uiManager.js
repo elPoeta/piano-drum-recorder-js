@@ -37,6 +37,7 @@ export class UiManager {
     }
 
     renderDrum() {
+        this.piano.removeListeners();
         this.root.innerHTML = `<h2>Drum</h2>`
     }
 

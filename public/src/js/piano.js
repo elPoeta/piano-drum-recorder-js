@@ -67,4 +67,11 @@ export class Piano {
         if (whiteKeyIndex > -1) this.playNote(this.whiteKeys[whiteKeyIndex])
         if (blackKeyIndex > -1) this.playNote(this.blackKeys[blackKeyIndex])
     }
+
+    removeListeners() {
+        this.keys.forEach(key => {
+            key.removeEventListener('click', this.playNote);
+        });
+        document.removeEventListener('keydown', this.pressKey);
+    }
 }
