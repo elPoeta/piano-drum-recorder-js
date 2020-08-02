@@ -18,7 +18,7 @@ export class Recorder {
     }
 
     listen() {
-        this.controls = document.querySelectorAll('#controls');
+        this.controls = document.querySelectorAll('[data-control]');
         this.controls
             .forEach(btn => {
                 btn.addEventListener('click', this.recordingManager.bind(this));
@@ -29,10 +29,10 @@ export class Recorder {
     recordingManager(ev) {
         const controlType = ev.target.dataset.control;
         if (controlType === 'record') {
-            console.log('ev record ', controlType)
-            this.controls.classList.remove('icon-record');
-            this.controls.classList.add('icon-stop')
-            this.controls.setAttribute('data-contol', 'stop');
+            console.log('ev record ', ev.target)
+            //this.controls.classList.remove('icon-record');
+            ev.target.classList.add('pulse')
+            ev.target.setAttribute('data-contol', 'recording');
         }
 
 

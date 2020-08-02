@@ -137,3 +137,24 @@ h1 {
     transform: rotate(45deg);
     transform-origin: 100% 100%;
   }
+ 
+.pulse {
+  animation-name: pulse_animation;
+  animation-duration: 5000ms;
+  transform-origin:70% 70%;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  background-color:#e86767;
+  border: 10px double #0028ffde;
+}
+  @keyframes pulse_animation {
+    0% { transform: scale(1); }
+    30% { transform: scale(.9); }
+    40% { transform: scale(.9); }
+    50% { transform: scale(1); }
+    60% { transform: scale(1); }
+    70% { transform: scale(.9); }
+    80% { transform: scale(.9); }
+    100% { transform: scale(1); }
+    
+}
