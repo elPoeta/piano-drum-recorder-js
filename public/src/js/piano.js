@@ -1,13 +1,17 @@
+import { Recorder } from './recorder.js';
+
 export class Piano {
     constructor() {
         this.WHITE_KEYS = ['z', 'x', 'c', 'v', 'b', 'n', 'm'];
         this.BLACK_KEYS = ['s', 'd', 'g', 'h', 'j'];
         this.playNote = this.playNote.bind(this);
+        this.recorder = new Recorder({ type: 'piano' });
     }
 
     render() {
         return (
-            `<section class="piano">
+            `${this.recorder.render()}
+            <section class="piano">
             <div data-key="C" class="key white"></div>
             <div data-key="Db" class="key black"></div>
             <div data-key="D" class="key white"></div>
