@@ -81,16 +81,24 @@ h1 {
   .recorder-container {
     display: flex;
     justify-content: space-evenly;
-    margin-bottom: 1em;
     align-items: center;
+    width: 70%;
+    margin: 1em auto;
   }
+  
+  .icon {
+    cursor: pointer;
+  }
+ .icon:hover {
+   transform: scale(.9);
+ }
   .icon-record {
     width: 50px;
     height: 50px;
     background: red;
-    border-radius: 50%
+    border-radius: 50%;
+    border: 10px double #444;
   }
-
   .icon-play {
     width: 0;
     height: 0;
@@ -103,4 +111,29 @@ h1 {
     width: 50px;
     height: 50px;
     background: #333;
+  }
+
+
+  .icon-save {
+    position: relative;
+    width: 50px;
+    height: 45px;
+  }
+  .icon-save:before,
+  .icon-save:after {
+    position: absolute;
+    content: "";
+    left: 25px;
+    top: 0;
+    width: 25px;
+    height: 40px;
+    background: red;
+    border-radius: 50px 50px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+  }
+  .icon-save:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
   }

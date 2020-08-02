@@ -47,6 +47,7 @@ export class Piano {
         this.whiteKeys = document.querySelectorAll('.key.white');
         this.blackKeys = document.querySelectorAll('.key.black');
         document.addEventListener('keydown', this.pressKey.bind(this))
+        this.recorder.listen();
     }
 
     playNote(key) {
