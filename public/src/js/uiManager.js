@@ -1,6 +1,6 @@
 import { Piano } from './piano.js';
 
-export class NavLink {
+export class UiManager {
     constructor() {
         this.root = document.querySelector('#root');
         this.pianoLink = document.querySelector('#pianoLink');

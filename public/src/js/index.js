@@ -1,4 +1,4 @@
-import { NavLink } from './navLink.js';
+import { UiManager } from './uiManager.js';
 window.addEventListener('load', e => {
-    new NavLink().init().open();
+    new UiManager().init().open();
 })
