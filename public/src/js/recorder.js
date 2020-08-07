@@ -28,8 +28,8 @@ export class Recorder {
 
     recordingManager(ev) {
         const controlType = ev.target.dataset.control;
+        this.operationType({ type: controlType });
         if (controlType === 'record') {
-            console.log('ev record ', ev.target)
             //this.controls.classList.remove('icon-record');
             ev.target.classList.add('pulse')
             ev.target.setAttribute('data-contol', 'recording');
@@ -37,6 +37,16 @@ export class Recorder {
             document.querySelector('[data-control="record"]').classList.remove('pulse');
         }
 
+    }
+
+    operationType({ type }) {
+        const buttons = {
+            'record': () => console.log('record'),
+            'stop': () => console.log('stop'),
+            'play': () => console.log('paly'),
+            'save': () => console.log('save')
+        }
+        return buttons[type]();
     }
 
     startRecording() {
