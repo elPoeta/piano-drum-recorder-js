@@ -33,8 +33,13 @@ export class Recorder {
             //this.controls.classList.remove('icon-record');
             ev.target.classList.add('pulse')
             ev.target.setAttribute('data-contol', 'recording');
+        } else if (controlType === 'stop') {
+            document.querySelector('[data-control="record"]').classList.remove('pulse');
         }
 
+    }
+
+    startRecording() {
 
     }
 }
