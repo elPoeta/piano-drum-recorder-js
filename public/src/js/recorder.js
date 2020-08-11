@@ -1,3 +1,5 @@
+import { Player } from './player.js';
+
 export class Recorder {
     constructor({ type }) {
         this.type = type;
@@ -6,6 +8,7 @@ export class Recorder {
         this.songNotes = [];
         this.startTimeRecording = 0;
         this.isRecording = false;
+        this.player = new Player();
     }
 
     get isRecording() {
@@ -80,13 +83,25 @@ export class Recorder {
 
     playSong(ev) {
         console.log('play')
+        this.songNotes.forEach(note => {
+            setTimeout(() => {
+                this.player.playNote(note.key);
+            }, note.startTime)
+        });
+    }
+
+    playNotePiano(key, isRecording) {
+        if (isRecording) {
+            this.recordNote(key);
+        }
+        this.player.playNote(key);
     }
 
     recordNote(note) {
         this.songNotes.push({
             key: note,
             startTime: Date.now() - this.startTimeRecording
-        })
+        });
     }
 
 }
