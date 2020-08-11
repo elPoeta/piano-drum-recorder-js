@@ -28,28 +28,35 @@ export class Recorder {
 
     recordingManager(ev) {
         const controlType = ev.target.dataset.control;
-        this.operationType({ type: controlType });
-        if (controlType === 'record') {
-            //this.controls.classList.remove('icon-record');
-            ev.target.classList.add('pulse')
-            ev.target.setAttribute('data-contol', 'recording');
-        } else if (controlType === 'stop') {
-            document.querySelector('[data-control="record"]').classList.remove('pulse');
-        }
-
+        this.operationType({ type: controlType })(ev);
     }
 
     operationType({ type }) {
         const buttons = {
-            'record': () => console.log('record'),
-            'stop': () => console.log('stop'),
-            'play': () => console.log('paly'),
-            'save': () => console.log('save')
+            'record': this.startRecording,
+            'stop': this.stopRecording,
+            'play': this.playSong,
+            'save': this.saveSong,
+            'default': () => { }
         }
-        return buttons[type]();
+        return buttons[type] || buttons['default'];
     }
 
-    startRecording() {
+    startRecording(ev) {
+        ev.target.classList.add('pulse')
+        ev.target.setAttribute('data-contol', 'recording');
+    }
 
+    stopRecording(ev) {
+        document.querySelector('[data-control="record"]').classList.remove('pulse');
+    }
+
+    saveSong(ev) {
+        console.log('save');
+
+    }
+
+    playSong(ev) {
+        console.log('play')
     }
 }

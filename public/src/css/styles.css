@@ -82,7 +82,7 @@ h1 {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    width: 70%;
+    max-width: 700px;
     margin: 1em auto;
   }
   
@@ -127,7 +127,7 @@ h1 {
     top: 0;
     width: 25px;
     height: 40px;
-    background: red;
+    background: #9c9c9c;
     border-radius: 50px 50px 0 0;
     transform: rotate(-45deg);
     transform-origin: 0 100%;
