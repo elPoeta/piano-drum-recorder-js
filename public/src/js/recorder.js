@@ -3,7 +3,17 @@ export class Recorder {
         this.type = type;
         this.playlist = {};
         this.songs = [];
+        this.songNotes = [];
         this.startTimeRecording = 0;
+        this.isRecording = false;
+    }
+
+    get isRecording() {
+        return this._isRecording;
+    }
+
+    set isRecording(isRecording) {
+        this._isRecording = isRecording;
     }
 
     render() {
@@ -33,22 +43,34 @@ export class Recorder {
 
     operationType({ type }) {
         const buttons = {
-            'record': this.startRecording,
-            'stop': this.stopRecording,
-            'play': this.playSong,
-            'save': this.saveSong,
+            'record': this.startRecording.bind(this),
+            'stop': this.stopRecording.bind(this),
+            'play': this.playSong.bind(this),
+            'save': this.saveSong.bind(this),
             'default': () => { }
         }
         return buttons[type] || buttons['default'];
     }
 
     startRecording(ev) {
-        ev.target.classList.add('pulse')
-        ev.target.setAttribute('data-contol', 'recording');
+        if (!this.isRecording) {
+            this.isRecording = true;
+            ev.target.classList.add('pulse')
+            ev.target.setAttribute('data-contol', 'recording');
+            this.startTimeRecording = Date.now();
+        }
+
     }
 
     stopRecording(ev) {
-        document.querySelector('[data-control="record"]').classList.remove('pulse');
+        if (this.isRecording) {
+            this.isRecording = false;
+            document.querySelector('[data-control="record"]').classList.remove('pulse');
+            console.log('notes ', this.songNotes)
+        } else {
+            console.log('no record ',)
+        }
+
     }
 
     saveSong(ev) {
@@ -59,4 +81,12 @@ export class Recorder {
     playSong(ev) {
         console.log('play')
     }
+
+    recordNote(note) {
+        this.songNotes.push({
+            key: note,
+            startTime: Date.now() - this.startTimeRecording
+        })
+    }
+
 }

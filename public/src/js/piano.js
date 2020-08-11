@@ -53,11 +53,14 @@ export class Piano {
     playNote(key) {
         const noteAudio = document.querySelector(`#${key.dataset.key}`);
         noteAudio.currentTime = 0
-        noteAudio.play()
+        noteAudio.play();
         key.classList.add('active')
         noteAudio.addEventListener('ended', () => {
             key.classList.remove('active')
         });
+        if (this.recorder.isRecording) {
+            this.recorder.recordNote(key);
+        }
     }
 
     pressKey(e) {
@@ -65,8 +68,19 @@ export class Piano {
         const key = e.key
         const whiteKeyIndex = this.WHITE_KEYS.indexOf(key)
         const blackKeyIndex = this.BLACK_KEYS.indexOf(key)
-        if (whiteKeyIndex > -1) this.playNote(this.whiteKeys[whiteKeyIndex])
-        if (blackKeyIndex > -1) this.playNote(this.blackKeys[blackKeyIndex])
+        if (whiteKeyIndex > -1) {
+            this.playNote(this.whiteKeys[whiteKeyIndex]);
+            if (this.recorder.isRecording) {
+                this.recorder.recordNote(this.whiteKeys[whiteKeyIndex]);
+            }
+        }
+        if (blackKeyIndex > -1) {
+            this.playNote(this.blackKeys[blackKeyIndex]);
+            if (this.recorder.isRecording) {
+                this.recorder.recordNote(this.blackKeys[blackKeyIndex]);
+            }
+
+        }
     }
 
     removeListeners() {
