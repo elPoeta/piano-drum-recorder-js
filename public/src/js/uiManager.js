@@ -1,4 +1,5 @@
 import { Piano } from './piano.js';
+import { Drum } from './drum.js';
 
 export class UiManager {
     constructor() {
@@ -6,6 +7,7 @@ export class UiManager {
         this.pianoLink = document.querySelector('#pianoLink');
         this.drumLink = document.querySelector('#drumLink');
         this.piano = new Piano();
+        this.drum = new Drum();
     }
 
     init() {
@@ -38,7 +40,7 @@ export class UiManager {
 
     renderDrum() {
         this.piano.removeListeners();
-        this.root.innerHTML = `<h2>Drum</h2>`
+        this.root.innerHTML = this.drum.render();
     }
 
     toogleActive({ type }) {
