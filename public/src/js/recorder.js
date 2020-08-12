@@ -58,6 +58,7 @@ export class Recorder {
     startRecording(ev) {
         if (!this.isRecording) {
             this.isRecording = true;
+            this.songNotes = [];
             ev.target.classList.add('pulse')
             ev.target.setAttribute('data-contol', 'recording');
             this.startTimeRecording = Date.now();
