@@ -3,13 +3,13 @@ export class Player {
         this.playNote = this.playNote.bind(this);
     }
 
-    playNote(key) {
-        const noteAudio = document.querySelector(`#${key.dataset.key}`);
+    playNote(note) {
+        const noteAudio = document.querySelector(`#${note}`);
         noteAudio.currentTime = 0
         noteAudio.play();
-        key.classList.add('active')
+        document.querySelector(`[data-key="${note}"]`).classList.add('active');
         noteAudio.addEventListener('ended', () => {
-            key.classList.remove('active')
+            document.querySelector(`[data-key="${note}"]`).classList.remove('active');
         });
     }
 

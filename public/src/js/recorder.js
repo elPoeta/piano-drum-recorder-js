@@ -78,13 +78,18 @@ export class Recorder {
     }
 
     saveSong(ev) {
-        console.log('save');
+        if (this.songNotes.length > 0) {
+            const songsString = localStorage.getItem('songs');
+            let songs = songsString ? JSON.parse(songsString) : [];
+            songs.push(this.songNotes);
+            localStorage.setItem('songs', JSON.stringify(songs));
+        }
 
     }
 
-    playSong(ev) {
-        console.log('play')
-        this.songNotes.forEach(note => {
+    playSong(ev, songs) {
+        songs = songs ? songs : this.songNotes;
+        songs.forEach(note => {
             setTimeout(() => {
                 this.player.playNote(note.key);
             }, note.startTime)
@@ -93,9 +98,9 @@ export class Recorder {
 
     playNotePiano(key, isRecording) {
         if (isRecording) {
-            this.recordNote(key);
+            this.recordNote(key.dataset.key);
         }
-        this.player.playNote(key);
+        this.player.playNote(key.dataset.key);
     }
 
     recordNote(note) {

@@ -127,7 +127,7 @@ h1 {
     top: 0;
     width: 25px;
     height: 40px;
-    background: #9c9c9c;
+    background: red;/* #9c9c9c;*/
     border-radius: 50px 50px 0 0;
     transform: rotate(-45deg);
     transform-origin: 0 100%;
