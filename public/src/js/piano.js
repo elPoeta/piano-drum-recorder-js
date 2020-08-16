@@ -51,20 +51,23 @@ export class Piano {
 
     pressKey(e) {
         if (e.repeat) return;
-        const key = e.key
-        const whiteKeyIndex = this.WHITE_KEYS.indexOf(key)
-        const blackKeyIndex = this.BLACK_KEYS.indexOf(key)
-        if (whiteKeyIndex > -1) {
-            this.recorder.playNotePiano(this.whiteKeys[whiteKeyIndex], this.recorder.isRecording);
-        }
-        if (blackKeyIndex > -1) {
-            this.recorder.playNotePiano(this.blackKeys[blackKeyIndex], this.recorder.isRecording);
+        if (this.recorder.type == 'piano') {
+            const key = e.key
+            const whiteKeyIndex = this.WHITE_KEYS.indexOf(key)
+            const blackKeyIndex = this.BLACK_KEYS.indexOf(key)
+            if (whiteKeyIndex > -1) {
+                this.recorder.playNotePiano(this.whiteKeys[whiteKeyIndex], this.recorder.isRecording);
+            }
+            if (blackKeyIndex > -1) {
+                this.recorder.playNotePiano(this.blackKeys[blackKeyIndex], this.recorder.isRecording);
+            }
         }
     }
 
     removeListeners() {
+        console.log('remove piano listenr')
         this.keys.forEach(key => {
-            key.removeEventListener('click', this.playNote);
+            key.removeEventListener('click', this.recorder.playNotePiano);
         });
         document.removeEventListener('keydown', this.pressKey);
     }

@@ -3,6 +3,8 @@ import { Recorder } from './recorder.js';
 export class Drum {
     constructor() {
         this.recorder = new Recorder({ type: 'drum' });
+        //this.drumKeys = ['q', 'w', 'e', 'a', 's', 'd', 'z', 'x', 'c'];
+        this.drumKeys = ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o'];
     }
 
     render() {
@@ -29,5 +31,31 @@ export class Drum {
           <audio  id="T" src="./assets/media/drum/T.wav" preload="auto" type="audio/wav"></audio>
           <audio  id="TT" src="./assets/media/drum/TT.wav" preload="auto" type="audio/wav"></audio>
         `);
+    }
+
+    listen() {
+        this.keys = document.querySelectorAll('.drumBoom');
+        this.keys.forEach(key => {
+            key.addEventListener('click', () => this.recorder.playNotePiano(key, this.recorder.isRecording))
+        });
+        document.addEventListener('keydown', this.pressKey.bind(this));
+        this.recorder.listen();
+    }
+
+    pressKey(e) {
+        if (e.repeat) return;
+        const key = e.key
+        const keyDrum = this.drumKeys.indexOf(key);
+        if (keyDrum > -1) this.recorder.playNotePiano(this.keys[keyDrum], this.recorder.isRecording);
+    }
+
+    removeListeners() {
+        if (this.keys != undefined) {
+            this.keys.forEach(key => {
+                key.removeEventListener('click', this.recorder.playNotePiano);
+            });
+            document.removeEventListener('keydown', this.pressKey);
+        }
+
     }
 }

@@ -34,6 +34,7 @@ export class UiManager {
 
 
     renderPiano() {
+        this.drum.removeListeners();
         this.root.innerHTML = this.piano.render();
         this.piano.listen();
     }
@@ -41,6 +42,7 @@ export class UiManager {
     renderDrum() {
         this.piano.removeListeners();
         this.root.innerHTML = this.drum.render();
+        this.drum.listen();
     }
 
     toogleActive({ type }) {
